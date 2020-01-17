@@ -22,7 +22,7 @@ class UpdateUtil(object):
             version = _file.readline()
 
             try:
-                with request.urlopen("https://api.github.com/repos/walofz/alauto/releases/latest") as f:
+                with request.urlopen("https://api.github.com/repos/Walofz/alauto/releases/latest") as f:
                     _json = json.loads(f.read().decode('utf-8'))
                     latest_version = _json["tag_name"]
             except error.HTTPError as e:
@@ -32,7 +32,7 @@ class UpdateUtil(object):
             version = _file.readlines()[1]
 
             try:
-                with request.urlopen("https://raw.githubusercontent.com/walofz/ALAuto/master/version.txt") as f:
+                with request.urlopen("https://raw.githubusercontent.com/Walofz/ALAuto/master/version.txt") as f:
                     _f = f.read().decode('utf-8')
                     latest_version = _f.splitlines()[1]
             except error.HTTPError as e:
