@@ -82,8 +82,7 @@ class Utils(object):
         screen = None
         while screen is None:
             if Adb.legacy:
-                screen = cv2.imdecode(
-                    numpy.fromstring(Adb.exec_out(r"screencap -p | sed s/\r\n/\n/"), dtype=numpy.uint8), 0)
+                screen = cv2.imdecode(numpy.fromstring(Adb.exec_out(r"screencap -p | sed s/\r\n/\n/"), dtype=numpy.uint8), 0)
             else:
                 screen = cv2.imdecode(numpy.fromstring(Adb.exec_out('screencap -p'), dtype=numpy.uint8), 0)
 
