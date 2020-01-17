@@ -22,7 +22,7 @@ class UpdateUtil(object):
             version = _file.readline()
 
             try:
-                with request.urlopen("https://api.github.com/repos/egoistically/alauto/releases/latest") as f:
+                with request.urlopen("https://api.github.com/repos/walofz/alauto/releases/latest") as f:
                     _json = json.loads(f.read().decode('utf-8'))
                     latest_version = _json["tag_name"]
             except error.HTTPError as e:
