@@ -46,15 +46,19 @@ class ALAuto(object):
             self.modules['combat'] = CombatModule(self.config, self.stats)
             self.oil_limit = self.config.combat['oil_limit']
         if self.config.commissions['enabled']:
-            self.modules['commissions'] = CommissionModule(self.config, self.stats)
+            self.modules['commissions'] = CommissionModule(
+                self.config, self.stats)
         if self.config.enhancement['enabled']:
-            self.modules['enhancement'] = EnhancementModule(self.config, self.stats)
+            self.modules['enhancement'] = EnhancementModule(
+                self.config, self.stats)
         if self.config.missions['enabled']:
             self.modules['missions'] = MissionModule(self.config, self.stats)
         if self.config.retirement['enabled']:
-            self.modules['retirement'] = RetirementModule(self.config, self.stats)
+            self.modules['retirement'] = RetirementModule(
+                self.config, self.stats)
         if self.config.dorm['enabled'] or self.config.academy['enabled']:
-            self.modules['headquarters'] = HeadquartersModule(self.config, self.stats)
+            self.modules['headquarters'] = HeadquartersModule(
+                self.config, self.stats)
         if self.config.events['enabled']:
             self.modules['event'] = EventModule(self.config, self.stats)
         self.print_stats_check = True
@@ -63,15 +67,16 @@ class ALAuto(object):
     def run_update_check(self):
         if self.modules['updates']:
             if self.modules['updates'].checkUpdate():
-                Logger.log_warning("A new release is available, please check the github.")
+                Logger.log_warning(
+                    "A new release is available, please check the github.")
 
     def should_sortie(self):
         """Method to check wether bot should combat or not.
         """
         return self.modules['combat'] \
-               and script.next_combat != 0 \
-               and script.next_combat < datetime.now() \
-               and Utils.check_oil(self.oil_limit)
+            and script.next_combat != 0 \
+            and script.next_combat < datetime.now() \
+            and Utils.check_oil(self.oil_limit)
 
     def run_sortie_cycle(self):
         """Method to run all cycles related to combat.
@@ -89,11 +94,13 @@ class ALAuto(object):
 
             if result == 1:
                 # if boss is defeated
-                Logger.log_msg("Boss successfully defeated, going back to menu.")
+                Logger.log_msg(
+                    "Boss successfully defeated, going back to menu.")
                 self.print_stats_check = True
             if result == 2:
                 # if morale is too low
-                Logger.log_warning("Ships morale is too low, entering standby mode for an hour.")
+                Logger.log_warning(
+                    "Ships morale is too low, entering standby mode for an hour.")
                 self.next_combat = datetime.now() + timedelta(hours=1)
                 self.print_stats_check = False
             if result == 3:
@@ -205,28 +212,13 @@ try:
         Utils.wait_update_screen(1)
 
         # temporal solution to event alerts
-        # if not Utils.find("menu/button_battle"):
-        #     Utils.touch_randomly(Region(54, 57, 67, 67))
-        #     Utils.script_sleep(1)
-        #     continue
+        if not Utils.find("menu/button_battle"):
+            Utils.touch_randomly(Region(54, 57, 67, 67))
+            Utils.script_sleep(1)
+            continue
         if Utils.find("menu/item_found"):
             Logger.log_msg("Found item message.")
             Utils.find_and_touch("menu/tap_to_continue")
-            Utils.script_sleep(1)
-            continue
-        if Utils.find("menu/home_button"):
-            Logger.log_msg("Found home button")
-            Utils.find_and_touch("menu/home_button")
-            Utils.script_sleep(1)
-            continue
-        if Utils.find("menu/announcement"):
-            Logger.log_msg("Found Announcement Window")
-            Utils.find_and_touch("menu/announcement")
-            Utils.script_sleep(1)
-            continue
-        if Utils.find("menu/alert_info"):
-            Logger.log_msg("Found alert.")
-            Utils.find_and_touch("menu/alert_close")
             Utils.script_sleep(1)
             continue
         if Utils.find("commission/alert_completed"):
@@ -254,7 +246,8 @@ except KeyboardInterrupt:
     sys.exit(0)
 except:
     # registering whatever exception occurs during execution
-    Logger.log_error("An error occurred. For more info check the traceback.log file.")
+    Logger.log_error(
+        "An error occurred. For more info check the traceback.log file.")
     # writing traceback to file
     f = open("traceback.log", "w")
     traceback.print_exc(None, f, True)
