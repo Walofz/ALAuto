@@ -32,7 +32,7 @@ class UpdateUtil(object):
             version = _file.readlines()[1]
 
             try:
-                with request.urlopen("https://raw.githubusercontent.com/Egoistically/ALAuto/master/version.txt") as f:
+                with request.urlopen("https://raw.githubusercontent.com/walofz/ALAuto/master/version.txt") as f:
                     _f = f.read().decode('utf-8')
                     latest_version = _f.splitlines()[1]
             except error.HTTPError as e:
