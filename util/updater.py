@@ -28,20 +28,12 @@ class UpdateUtil(object):
             except error.HTTPError as e:
                 Logger.log_error("Couldn't check for updates, {}.".format(e))
 
-        else:
-            version = _file.readlines()[1]
-
-            try:
-                with request.urlopen("https://raw.githubusercontent.com/Walofz/ALAuto/master/version.txt") as f:
-                    _f = f.read().decode('utf-8')
-                    latest_version = _f.splitlines()[1]
-            except error.HTTPError as e:
-                Logger.log_error("Couldn't check for updates, {}.".format(e))
-
         _file.close()
 
-        if version != latest_version:
-            Logger.log_debug("Current version: " + version)
-            Logger.log_debug("Latest version: " + latest_version)
+        if str(version).strip() != str(latest_version).strip():
+            Logger.log_warning("Current version: " + version)
+            Logger.log_warning("Latest version: " + latest_version)
 
-            return True
+            return True        
+        else :
+            return False
