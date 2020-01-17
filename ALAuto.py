@@ -210,10 +210,20 @@ else:
 try:
     while True:
         Utils.wait_update_screen(1)
-
         # temporal solution to event alerts
-        if not Utils.find("menu/button_battle"):
-            Utils.touch_randomly(Region(54, 57, 67, 67))
+        # if not Utils.find("menu/button_battle"):
+        #    Utils.touch_randomly(Region(54, 57, 67, 67))
+        #    Utils.script_sleep(1)
+        #    continue
+        if Utils.find("menu/azurlane"):
+            Logger.log_msg("Found Azurlane Screen")
+            for x in range(2):
+                Utils.touch_randomly(Region(700, 400, 100, 100))
+                Utils.script_sleep(1)
+            continue
+        if Utils.find("menu/announcement"):
+            Logger.log_msg("Found Announcement Window")
+            Utils.touch_randomly(Region(1790, 100, 1, 1))
             Utils.script_sleep(1)
             continue
         if Utils.find("menu/item_found"):
@@ -221,16 +231,30 @@ try:
             Utils.find_and_touch("menu/tap_to_continue")
             Utils.script_sleep(1)
             continue
+        if Utils.find("menu/home_button"):
+            Logger.log_msg("Found home button")
+            Utils.find_and_touch("menu/home_button")
+            Utils.script_sleep(1)
+            continue
+        if Utils.find("menu/alert_info"):
+            Logger.log_msg("Found alert.")
+            Utils.find_and_touch("menu/alert_close")
+            Utils.script_sleep(1)
+            continue
         if Utils.find("commission/alert_completed"):
             script.run_commission_cycle()
             script.print_cycle_stats()
+            continue
         if Utils.find("mission/alert_completed"):
             script.run_mission_cycle()
+            continue
         if Utils.find("headquarters/hq_alert"):
             script.run_hq_cycle()
+            continue
         if script.should_sortie():
             script.run_sortie_cycle()
             script.print_cycle_stats()
+            continue
         else:
             Logger.log_msg("Nothing to do, will check again in a few minutes.")
             Utils.script_sleep(60)
