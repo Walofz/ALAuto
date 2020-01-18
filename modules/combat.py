@@ -75,7 +75,7 @@ class CombatModule(object):
                 Utils.touch_randomly(self.region['close_info_dialog'])
                 self.exit = 2
                 break
-            if Utils.find("commission/button_confirm"):
+            if Utils.find("menu/button_confirm"):
                 Logger.log_msg("Found commission info message.")
                 Utils.touch_randomly(self.region["combat_com_confirm"])
                 continue

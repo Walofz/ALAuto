@@ -210,7 +210,7 @@ else:
 try:
     while True:
         Utils.wait_update_screen(1)
-        # temporal solution to event alerts        
+        # temporal solution to event alerts      
         if Utils.find("menu/azurlane"):
             Logger.log_msg("Found Azurlane Screen")
             for x in range(2):
