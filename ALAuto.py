@@ -210,11 +210,7 @@ else:
 try:
     while True:
         Utils.wait_update_screen(1)
-        # temporal solution to event alerts
-        # if not Utils.find("menu/button_battle"):
-        #    Utils.touch_randomly(Region(54, 57, 67, 67))
-        #    Utils.script_sleep(1)
-        #    continue
+        # temporal solution to event alerts        
         if Utils.find("menu/azurlane"):
             Logger.log_msg("Found Azurlane Screen")
             for x in range(2):
@@ -223,22 +219,21 @@ try:
             continue
         if Utils.find("menu/announcement"):
             Logger.log_msg("Found Announcement Window")
-            Utils.touch_randomly(Region(1790, 100, 1, 1))
+            Utils.touch_randomly(Region(1790, 100, 60, 60))
             Utils.script_sleep(1)
             continue
         if Utils.find("menu/item_found"):
             Logger.log_msg("Found item message.")
             Utils.find_and_touch("menu/tap_to_continue")
             Utils.script_sleep(1)
-            continue
-        if Utils.find("menu/home_button"):
-            Logger.log_msg("Found home button")
-            Utils.find_and_touch("menu/home_button")
-            Utils.script_sleep(1)
-            continue
+            continue        
         if Utils.find("menu/alert_info"):
             Logger.log_msg("Found alert.")
             Utils.find_and_touch("menu/alert_close")
+            Utils.script_sleep(1)
+            continue
+        if not Utils.find("menu/button_battle"):
+            Utils.touch_randomly(Region(54, 57, 67, 67))
             Utils.script_sleep(1)
             continue
         if Utils.find("commission/alert_completed"):
