@@ -56,21 +56,6 @@ class CommissionModule(object):
                 Utils.find_and_touch("menu/tap_to_continue")
                 Utils.script_sleep(1)
                 continue
-            if Utils.find("menu/home_button"):
-                Logger.log_msg("Found home button")
-                Utils.find_and_touch("menu/home_button")
-                Utils.script_sleep(1)
-                continue
-            if Utils.find("menu/announcement"):
-                Logger.log_msg("Found Announcement Window")
-                Utils.find_and_touch("menu/announcement")
-                Utils.script_sleep(1)
-                continue
-            if Utils.find("menu/alert_info"):
-                Logger.log_msg("Found alert.")
-                Utils.find_and_touch("menu/alert_close")
-                Utils.script_sleep(1)
-
             if Utils.find("commission/button_completed") and (lambda x: 332 < x < 511)(
                     Utils.find("commission/button_completed").y):
                 Logger.log_debug("Found commission complete button.")
@@ -156,7 +141,7 @@ class CommissionModule(object):
                 Utils.touch_randomly(self.region["dismiss_message"])
                 self.stats.increment_commissions_started()
                 break
-            if Utils.find("commission/button_confirm"):
+            if Utils.find("menu/button_confirm"):
                 Logger.log_debug("Found commission oil warning message.")
                 Utils.touch_randomly(self.region["oil_warning"])
                 continue
