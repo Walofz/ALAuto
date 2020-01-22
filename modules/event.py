@@ -129,6 +129,7 @@ class EventModule(object):
                 continue
             if Utils.find("combat/menu_touch2continue"):
                 Utils.touch_randomly(self.region['tap_to_continue'])
+                Utils.script_sleep(1)
                 continue
             if Utils.find("menu/item_found"):
                 Utils.touch_randomly(self.region['tap_to_continue'])

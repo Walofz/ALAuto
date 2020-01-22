@@ -220,7 +220,7 @@ try:
             continue
         if Utils.find("menu/announcement"):
             Logger.log_msg("Found Announcement Window")
-            Utils.touch_randomly(Region(1790, 100, 60, 60))
+            Utils.touch_randomly(Region(1790, 100, 10, 10))
             Utils.script_sleep(1)
             continue
         if Utils.find("menu/item_found"):
