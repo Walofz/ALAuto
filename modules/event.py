@@ -59,9 +59,9 @@ class EventModule(object):
 
                 Utils.touch_randomly(self.region[f'{event.lower()}_ex'])
                 if self.pre_combat_handler():
+                    Utils.script_sleep(1)
                     self.combat_handler()
                     Logger.log_msg(f"Finished EX {event.replace('_', ' ')} combat.")
-                    Utils.script_sleep(1)
 
             while ('H' in self.levels):
                 Utils.update_screen()
@@ -71,9 +71,9 @@ class EventModule(object):
 
                 Utils.touch_randomly(self.region[f'{event.lower()}_hard'])
                 if self.pre_combat_handler():
+                    Utils.script_sleep(1)
                     self.combat_handler()
                     Logger.log_msg(f"Finished Hard {event.replace('_', ' ')} combat.")
-                    Utils.script_sleep(1)
 
             while ('N' in self.levels):
                 Utils.update_screen()
@@ -83,9 +83,10 @@ class EventModule(object):
 
                 Utils.touch_randomly(self.region[f'{event.lower()}_normal'])
                 if self.pre_combat_handler():
+                    Utils.script_sleep(1)
                     self.combat_handler()
                     Logger.log_msg(f"Finished Normal {event.replace('_', ' ')} combat.")
-                    Utils.script_sleep(1)
+
 
             while ('E' in self.levels):
                 Utils.update_screen()
@@ -97,7 +98,6 @@ class EventModule(object):
                 if self.pre_combat_handler():
                     self.combat_handler()
                     Logger.log_msg(f"Finished Easy {event.replace('_', ' ')} combat.")
-                    Utils.script_sleep(1)
 
             Logger.log_msg("Finished all event combats, going back to menu.")
 
@@ -141,16 +141,16 @@ class EventModule(object):
                 Utils.touch_randomly(self.region['tap_to_continue'])
                 Utils.script_sleep(1)
                 continue
+            if Utils.find("combat/menu_combat_finished"):
+                Utils.touch_randomly(self.region['dismiss_combat_finished'])
+                Utils.script_sleep(1)
+                continue
             if Utils.find("combat/button_confirm"):
                 Logger.log_msg("Combat ended.")
                 Utils.touch_randomly(self.region['combat_end_confirm'])
                 self.stats.increment_combat_done()
                 Utils.script_sleep(1)
                 return
-            if Utils.find("combat/menu_combat_finished"):
-                Utils.touch_randomly(self.region['dismiss_combat_finished'])
-                Utils.script_sleep(1)
-                continue
             if Utils.find("combat/commander"):
                 # prevents fleet with submarines from getting stuck at combat end screen
                 Utils.touch_randomly(self.region["combat_dismiss_surface_fleet_summary"])
