@@ -96,6 +96,7 @@ class EventModule(object):
 
                 Utils.touch_randomly(self.region[f'{event.lower()}_easy'])
                 if self.pre_combat_handler():
+                    Utils.script_sleep(1)
                     self.combat_handler()
                     Logger.log_msg(f"Finished Easy {event.replace('_', ' ')} combat.")
 
