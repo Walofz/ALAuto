@@ -23,7 +23,7 @@ class EventModule(object):
             'dismiss_combat_finished': Region(725, 965, 647, 76),
             'combat_end_confirm': Region(1520, 963, 216, 58),
             'close_info_dialog': Region(1319, 217, 47, 47),
-
+            'combat_dismiss_surface_fleet_summary': Region(790, 950, 250, 65),
             'crosswave_ex': Region(1718, 246, 75, 75),
             'crosswave_hard': Region(1650, 449, 75, 75),
             'crosswave_normal': Region(1752, 612, 75, 75),
@@ -129,7 +129,6 @@ class EventModule(object):
                 continue
             if Utils.find("combat/menu_touch2continue"):
                 Utils.touch_randomly(self.region['tap_to_continue'])
-                Utils.script_sleep(1)
                 continue
             if Utils.find("menu/item_found"):
                 Utils.touch_randomly(self.region['tap_to_continue'])
@@ -144,4 +143,8 @@ class EventModule(object):
             if Utils.find("combat/menu_combat_finished"):
                 Utils.touch_randomly(self.region['dismiss_combat_finished'])
                 Utils.script_sleep(1)
+                continue
+            if Utils.find("combat/commander"):
+                # prevents fleet with submarines from getting stuck at combat end screen
+                Utils.touch_randomly(self.region["combat_dismiss_surface_fleet_summary"])
                 continue
