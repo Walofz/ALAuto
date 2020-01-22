@@ -111,11 +111,4 @@ venv.bak/
 start.bat
 config-local.ini
 
-
-
-.idea/ALAuto.iml
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/rSettings.xml
-.idea/vcs.xml
+.idea/
