@@ -61,6 +61,8 @@ class EventModule(object):
                 if self.pre_combat_handler():
                     self.combat_handler()
                     Logger.log_msg(f"Finished EX {event.replace('_', ' ')} combat.")
+                    Utils.script_sleep(1)
+
             while ('H' in self.levels):
                 Utils.update_screen()
                 if Utils.find(f"event/{event}/hard_completed"):
@@ -71,6 +73,8 @@ class EventModule(object):
                 if self.pre_combat_handler():
                     self.combat_handler()
                     Logger.log_msg(f"Finished Hard {event.replace('_', ' ')} combat.")
+                    Utils.script_sleep(1)
+
             while ('N' in self.levels):
                 Utils.update_screen()
                 if Utils.find(f"event/{event}/normal_completed"):
@@ -81,6 +85,8 @@ class EventModule(object):
                 if self.pre_combat_handler():
                     self.combat_handler()
                     Logger.log_msg(f"Finished Normal {event.replace('_', ' ')} combat.")
+                    Utils.script_sleep(1)
+
             while ('E' in self.levels):
                 Utils.update_screen()
                 if Utils.find(f"event/{event}/easy_completed"):
@@ -91,6 +97,7 @@ class EventModule(object):
                 if self.pre_combat_handler():
                     self.combat_handler()
                     Logger.log_msg(f"Finished Easy {event.replace('_', ' ')} combat.")
+                    Utils.script_sleep(1)
 
             Logger.log_msg("Finished all event combats, going back to menu.")
 
